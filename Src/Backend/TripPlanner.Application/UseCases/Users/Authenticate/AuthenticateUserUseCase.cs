@@ -8,13 +8,13 @@ using TripPlanner.Exceptions.ExceptionsBase;
 
 namespace TripPlanner.Application.UseCases.Users.Authenticate;
 
-public class AuthenticateUserUserCase : IAuthenticateUser
+public class AuthenticateUserUseCase : IAuthenticateUser
 {
     private readonly IUserRepository _userRepository;
     private readonly IPasswordEncrypter _passwordEncrypter;
     private readonly IAccessTokenGenerator _accessTokenGenerator;
 
-    public AuthenticateUserUserCase(
+    public AuthenticateUserUseCase(
         IUserRepository userRepository, 
         IPasswordEncrypter passwordEncrypter, 
         IAccessTokenGenerator accessTokenGenerator
@@ -32,7 +32,7 @@ public class AuthenticateUserUserCase : IAuthenticateUser
         var hashedPassword = _passwordEncrypter.Encrypt(request.Password);
         
         var user = await _userRepository.GetByEmailAndPassword(request.Email, hashedPassword) ??
-            throw new ResourceNotFoundException(request.Email);
+            throw new InvalidCredentialException();
 
         var accessToken = _accessTokenGenerator.GenerateToken(user);
 

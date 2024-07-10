@@ -37,7 +37,7 @@ public static class Bootstrapper
     {
         services
             .AddScoped<IRegisterUser, RegisterUserUseCase>()
-            .AddScoped<IAuthenticateUser, AuthenticateUserUserCase>();
+            .AddScoped<IAuthenticateUser, AuthenticateUserUseCase>();
     }
 
     private static (uint expireInMinutes, string signigkey) GetJwtSettings(IConfiguration configuration)

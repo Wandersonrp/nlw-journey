@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using TripPlanner.Communication.Enums.Users;
 using TripPlanner.Domain.Entities;
 using TripPlanner.Domain.Repositories;
 using TripPlanner.Infrastructure.Data.Context;
@@ -19,6 +20,13 @@ public class UserRepository : IUserRepository
         await _context.Users.AddAsync(user);
 
         await _context.SaveChangesAsync();
+    }
+
+    public Task<bool> ExistsActiveUserWithIdentifier(Guid userIdentifier)
+    {
+        return _context.Users
+            .AsNoTracking()
+            .AnyAsync(e => e.Id.Equals(userIdentifier) && e.Status.Equals(Status.Active));
     }
 
     public async Task<bool> ExistsWithSameEmail(string email)

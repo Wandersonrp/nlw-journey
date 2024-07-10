@@ -7,4 +7,5 @@ public interface IUserRepository
     Task<bool> ExistsWithSameEmail(string email);
     Task AddAsync(User user);
     Task<User?> GetByEmailAndPassword(string email, string password); 
+    Task<bool> ExistsActiveUserWithIdentifier(Guid userIdentifier);
 }
