@@ -1,8 +1,8 @@
-using TripPlanner.Application.Services.PasswordEncrypter;
 using TripPlanner.Communication.Requests.Users;
 using TripPlanner.Communication.Responses.Users;
 using TripPlanner.Domain.Repositories;
 using TripPlanner.Domain.Services.Auth;
+using TripPlanner.Domain.Services.Cryptography;
 using TripPlanner.Exceptions.ExceptionsBase;
 
 namespace TripPlanner.Application.UseCases.Users.Authenticate;

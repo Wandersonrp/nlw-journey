@@ -9,6 +9,7 @@ namespace TripPlanner.API.Controllers.Users.Register;
 public class RegisterController : ControllerBase
 {
     [HttpPost]
+    [ProducesResponseType(StatusCodes.Status201Created)]
     public async Task<IActionResult> Register(
         [FromBody] RequestRegisterUserJson request, 
         [FromServices] IRegisterUser useCase

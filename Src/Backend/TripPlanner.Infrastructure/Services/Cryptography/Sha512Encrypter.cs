@@ -1,13 +1,14 @@
-﻿using System.Security.Cryptography;
+using System.Security.Cryptography;
 using System.Text;
+using TripPlanner.Domain.Services.Cryptography;
 
-namespace TripPlanner.Application.Services.PasswordEncrypter;
+namespace TripPlanner.Infrastructure.Services.Cryptography;
 
-public class PasswordEncrypter : IPasswordEncrypter
+public class Sha512Encrypter : IPasswordEncrypter
 {
     private readonly string _salt;
 
-    public PasswordEncrypter(string salt)
+    public Sha512Encrypter(string salt)
     {
         _salt = salt;
     }
@@ -18,7 +19,7 @@ public class PasswordEncrypter : IPasswordEncrypter
 
         var bytes = Encoding.UTF8.GetBytes(passwordWithSalt);
 
-        var hashBytes = SHA256.HashData(bytes);
+        var hashBytes = SHA512.HashData(bytes);
 
         return StringBytes(hashBytes);        
     }

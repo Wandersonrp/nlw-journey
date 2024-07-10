@@ -8,6 +8,7 @@ public class TripPlannerDbContext : DbContext
     public TripPlannerDbContext(DbContextOptions<TripPlannerDbContext> options) : base(options) { }
 
     public DbSet<User> Users { get; set; }
+    public DbSet<Trip> Trips { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

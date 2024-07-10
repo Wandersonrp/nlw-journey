@@ -2,8 +2,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using TripPlanner.Application.Services.Auth.Jwt.Generator;
 using TripPlanner.Application.Services.Auth.Jwt.Validator;
-using TripPlanner.Application.Services.PasswordEncrypter;
 using TripPlanner.Application.UseCases.Users.Authenticate;
+using TripPlanner.Application.UseCases.Users.GetProfile;
 using TripPlanner.Application.UseCases.Users.Register;
 using TripPlanner.Domain.Services.Auth;
 using TripPlanner.Infrastructure;
@@ -23,22 +23,17 @@ public static class Bootstrapper
     {
         (uint expireInMinutes, string signingKey) tuple = GetJwtSettings(configuration);
 
-        services
-            .AddScoped<IPasswordEncrypter>(options => new PasswordEncrypter(GetPasswordSalt(configuration)))
+        services            
             .AddScoped<IAccessTokenGenerator>(options => new JwtTokenGenerator(tuple.expireInMinutes, tuple.signingKey))
             .AddScoped<IAccessTokenValidator>(options => new JwtTokenValidator(tuple.signingKey));
-    }
-
-    private static string GetPasswordSalt(IConfiguration configuration)
-    {
-        return configuration["PasswordSalt"] ?? string.Empty;
-    }
+    }    
 
     private static void AddUseCases(IServiceCollection services)
     {
         services
             .AddScoped<IRegisterUser, RegisterUserUseCase>()
-            .AddScoped<IAuthenticateUser, AuthenticateUserUseCase>();
+            .AddScoped<IAuthenticateUser, AuthenticateUserUseCase>()
+            .AddScoped<IGetUserProfile, GetUserProfileUseCase>();
     }
 
     private static (uint expireInMinutes, string signigkey) GetJwtSettings(IConfiguration configuration)
