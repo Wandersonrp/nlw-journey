@@ -16,6 +16,6 @@ public class RegisterController : ControllerBase
     {
         await useCase.Execute(request);
 
-        return Created();
+        return CreatedAtAction(nameof(Register), string.Empty);
     }
 }
