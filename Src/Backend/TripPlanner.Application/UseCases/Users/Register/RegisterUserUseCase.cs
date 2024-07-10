@@ -2,6 +2,7 @@
 using TripPlanner.Communication.Requests.Users;
 using TripPlanner.Domain.Entities;
 using TripPlanner.Domain.Repositories;
+using TripPlanner.Exceptions.ExceptionsBase;
 
 namespace TripPlanner.Application.UseCases.Users.Register;
 
@@ -41,18 +42,17 @@ public class RegisterUserUseCase : IRegisterUser
         
         var result = validator.Validate(request);
 
-        var userExistsWithSameEmail = await _userRepository.ExistsWithSameEmail(request.Email);
-
-        Console.WriteLine(userExistsWithSameEmail);
-
+        var userExistsWithSameEmail = await _userRepository.ExistsWithSameEmail(request.Email);        
         if(userExistsWithSameEmail)
         {
-            throw new Exception();
+            throw new ResourceAlreadyExistsException(request.Email);
         }
 
         if (!result.IsValid)
         {
-            throw new Exception();
+            var errorMessages = result.Errors.Select(e => e.ErrorMessage).ToList();
+
+            throw new ErrorOnValidationException(errorMessages);            
         }
     }
 }

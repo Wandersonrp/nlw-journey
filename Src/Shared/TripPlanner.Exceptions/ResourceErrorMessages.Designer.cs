@@ -61,6 +61,24 @@ namespace TripPlanner.Exceptions {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Resource already exists: .
+        /// </summary>
+        public static string RESOURCE_ALREADY_EXISTS {
+            get {
+                return ResourceManager.GetString("RESOURCE_ALREADY_EXISTS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Unknown error.
+        /// </summary>
+        public static string UNKNOWN_ERROR {
+            get {
+                return ResourceManager.GetString("UNKNOWN_ERROR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Confirm password must have at least 8 characteres.
         /// </summary>
         public static string USER_CONFIRM_PASSWORD_MIN_LENGTH {
