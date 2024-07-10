@@ -43,6 +43,7 @@ public class RegisterUserUseCase : IRegisterUser
         var result = validator.Validate(request);
 
         var userExistsWithSameEmail = await _userRepository.ExistsWithSameEmail(request.Email);        
+        
         if(userExistsWithSameEmail)
         {
             throw new ResourceAlreadyExistsException(request.Email);

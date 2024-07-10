@@ -1,7 +1,9 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TripPlanner.Application.Services.Auth.Jwt.Generator;
+using TripPlanner.Application.Services.Auth.Jwt.Validator;
 using TripPlanner.Application.Services.PasswordEncrypter;
+using TripPlanner.Application.UseCases.Users.Authenticate;
 using TripPlanner.Application.UseCases.Users.Register;
 using TripPlanner.Infrastructure;
 
@@ -22,7 +24,8 @@ public static class Bootstrapper
 
         services
             .AddScoped<IPasswordEncrypter>(options => new PasswordEncrypter(GetPasswordSalt(configuration)))
-            .AddScoped<IAccessTokenGenerator>(options => new JwtTokenGenerator(tuple.expireInMinutes, tuple.signingKey));
+            .AddScoped<IAccessTokenGenerator>(options => new JwtTokenGenerator(tuple.expireInMinutes, tuple.signingKey))
+            .AddScoped<IAccessTokenValidator>(options => new JwtTokenValidator(tuple.signingKey));
     }
 
     private static string GetPasswordSalt(IConfiguration configuration)
@@ -32,14 +35,18 @@ public static class Bootstrapper
 
     private static void AddUseCases(IServiceCollection services)
     {
-        services.AddScoped<IRegisterUser, RegisterUserUseCase>();
+        services
+            .AddScoped<IRegisterUser, RegisterUserUseCase>()
+            .AddScoped<IAuthenticateUser, AuthenticateUserUserCase>();
     }
 
     private static (uint expireInMinutes, string signigkey) GetJwtSettings(IConfiguration configuration)
     {
-        var expireInMinutes = uint.Parse(configuration.GetSection("Jwt:ExpireInMinutes").Value ?? throw new ArgumentNullException("Provide Jwt Expire in Minutes"));
+        var expireInMinutes = uint.Parse(configuration.GetSection("Jwt:ExpireInMinutes").Value ?? 
+            throw new ArgumentNullException("Provide Jwt Expire in Minutes"));
 
-        var signigkey = configuration.GetSection("Jwt:SigningKey").Value ?? throw new ArgumentNullException("Provide Jwt Signing Key");
+        var signigkey = configuration.GetSection("Jwt:SigningKey").Value ?? 
+            throw new ArgumentNullException("Provide Jwt Signing Key");
 
         return (expireInMinutes, signigkey);
     }

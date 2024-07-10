@@ -23,6 +23,28 @@ public class UserRepository : IUserRepository
 
     public async Task<bool> ExistsWithSameEmail(string email)
     {
-        return await _context.Users.AnyAsync(u => u.Email == email);
+        return await _context.Users
+            .AsNoTracking()
+            .Select(e => new User
+            {
+                Email = e.Email
+            })
+            .AnyAsync(u => u.Email.Equals(email));
+    }
+
+    public async Task<User?> GetByEmailAndPassword(string email, string password)
+    {
+        var user = await _context.Users
+            .AsNoTracking()                        
+            .Select(e => new User
+            {
+                Id = e.Id,
+                Name = e.Name,
+                Email = e.Email,
+                Password = e.Password
+            })
+            .FirstOrDefaultAsync(e => e.Email.Equals(email) && e.Password.Equals(password));
+
+        return user;    
     }
 }
