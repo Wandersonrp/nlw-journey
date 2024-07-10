@@ -1,6 +1,7 @@
 ﻿using TripPlanner.Domain.Entities;
 
-namespace TripPlanner.Application.Services.Auth.Jwt.Generator;
+namespace TripPlanner.Domain.Services.Auth;
+
 public interface IAccessTokenGenerator
 {
     string GenerateToken(User user);

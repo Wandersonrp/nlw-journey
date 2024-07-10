@@ -2,6 +2,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using TripPlanner.Domain.Entities;
+using TripPlanner.Domain.Services.Auth;
 
 namespace TripPlanner.Application.Services.Auth.Jwt.Generator;
 

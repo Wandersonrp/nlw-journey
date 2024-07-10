@@ -1,5 +1,7 @@
 using TripPlanner.API.Filters;
+using TripPlanner.API.Token;
 using TripPlanner.Application;
+using TripPlanner.Domain.Services.Auth;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,10 @@ builder.Services.AddSwaggerGen();
 builder.Services.InitializeApplication(builder.Configuration);
 
 builder.Services.AddMvc(options => options.Filters.Add(typeof(ExceptionFilter)));
+
+builder.Services.AddScoped<ITokenProvider, HttpContextTokenValue>();
+
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 

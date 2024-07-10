@@ -1,4 +1,4 @@
-namespace TripPlanner.Application.Services.Auth.Jwt.Validator;
+namespace TripPlanner.Domain.Services.Auth;
 
 public interface IAccessTokenValidator
 {

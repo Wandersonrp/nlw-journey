@@ -1,9 +1,8 @@
-using TripPlanner.Application.Services.Auth.Jwt.Generator;
 using TripPlanner.Application.Services.PasswordEncrypter;
 using TripPlanner.Communication.Requests.Users;
 using TripPlanner.Communication.Responses.Users;
-using TripPlanner.Domain.Entities;
 using TripPlanner.Domain.Repositories;
+using TripPlanner.Domain.Services.Auth;
 using TripPlanner.Exceptions.ExceptionsBase;
 
 namespace TripPlanner.Application.UseCases.Users.Authenticate;

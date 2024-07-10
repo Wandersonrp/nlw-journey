@@ -5,6 +5,7 @@ using TripPlanner.Application.Services.Auth.Jwt.Validator;
 using TripPlanner.Application.Services.PasswordEncrypter;
 using TripPlanner.Application.UseCases.Users.Authenticate;
 using TripPlanner.Application.UseCases.Users.Register;
+using TripPlanner.Domain.Services.Auth;
 using TripPlanner.Infrastructure;
 
 namespace TripPlanner.Application;

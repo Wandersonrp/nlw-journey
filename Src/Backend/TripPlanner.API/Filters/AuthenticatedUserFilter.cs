@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.IdentityModel.Tokens;
-using TripPlanner.Application.Services.Auth.Jwt.Validator;
 using TripPlanner.Communication.Responses;
 using TripPlanner.Domain.Repositories;
+using TripPlanner.Domain.Services.Auth;
 using TripPlanner.Exceptions.ExceptionsBase;
 
 namespace TripPlanner.API.Filters;

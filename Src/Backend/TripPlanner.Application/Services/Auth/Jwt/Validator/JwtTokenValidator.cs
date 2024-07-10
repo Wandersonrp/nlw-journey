@@ -1,6 +1,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
+using TripPlanner.Domain.Services.Auth;
 
 namespace TripPlanner.Application.Services.Auth.Jwt.Validator;
 
