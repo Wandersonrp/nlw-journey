@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using System;
 using System.Net;
 using TripPlanner.Communication.Responses;
 using TripPlanner.Exceptions;
@@ -36,7 +35,21 @@ public class ExceptionFilter : IExceptionFilter
             var exception = context.Exception as ResourceAlreadyExistsException;
 
             context.HttpContext.Response.StatusCode = (int)HttpStatusCode.Conflict;
-            context.Result = new ConflictObjectResult(new ResponseErrorJson(exception.Message));
+            context.Result = new ConflictObjectResult(new ResponseErrorJson(exception!.Message));
+        }
+        else if(context.Exception is ResourceNotFoundException) 
+        {
+            var exception = context.Exception as ResourceNotFoundException;
+
+            context.HttpContext.Response.StatusCode = (int)HttpStatusCode.NotFound;
+            context.Result = new NotFoundObjectResult(new ResponseErrorJson(exception!.Message));
+        }
+        else if(context.Exception is InvalidCredentialException) 
+        {
+            var exception = context.Exception as InvalidCredentialException;
+
+            context.HttpContext.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+            context.Result = new NotFoundObjectResult(new ResponseErrorJson(exception!.Message));
         }
     }
 
