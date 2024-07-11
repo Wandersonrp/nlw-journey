@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using TripPlanner.Domain.Entities;
 using TripPlanner.Domain.Repositories;
 using TripPlanner.Infrastructure.Data.Context;
@@ -18,5 +19,10 @@ public class TripRepository : ITripRepository
         await _context.Trips.AddAsync(trip);
 
         await _context.SaveChangesAsync();        
+    }
+
+    public async Task<Trip?> FindByIdAsync(Guid id)
+    {        
+        return await _context.Trips.AsNoTracking().FirstOrDefaultAsync(e => e.Id.Equals(id));
     }
 }
