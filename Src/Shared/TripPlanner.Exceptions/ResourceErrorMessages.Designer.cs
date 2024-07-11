@@ -61,11 +61,74 @@ namespace TripPlanner.Exceptions {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Destination is required.
+        /// </summary>
+        public static string DESTINATION_NULL {
+            get {
+                return ResourceManager.GetString("DESTINATION_NULL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a End date can not be less than start date.
+        /// </summary>
+        public static string END_DATE_LESS_THAN_START_DATE {
+            get {
+                return ResourceManager.GetString("END_DATE_LESS_THAN_START_DATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a End date is required.
+        /// </summary>
+        public static string END_DATE_NULL {
+            get {
+                return ResourceManager.GetString("END_DATE_NULL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Token is missing.
+        /// </summary>
+        public static string MISSING_TOKEN {
+            get {
+                return ResourceManager.GetString("MISSING_TOKEN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Origin is required.
+        /// </summary>
+        public static string ORIGIN_NULL {
+            get {
+                return ResourceManager.GetString("ORIGIN_NULL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Resource already exists: .
         /// </summary>
         public static string RESOURCE_ALREADY_EXISTS {
             get {
                 return ResourceManager.GetString("RESOURCE_ALREADY_EXISTS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Start date can not be greather than end date.
+        /// </summary>
+        public static string START_DATE_GREATER_THAN_END_DATE {
+            get {
+                return ResourceManager.GetString("START_DATE_GREATER_THAN_END_DATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Start date is required.
+        /// </summary>
+        public static string START_DATE_NULL {
+            get {
+                return ResourceManager.GetString("START_DATE_NULL", resourceCulture);
             }
         }
         
@@ -165,6 +228,15 @@ namespace TripPlanner.Exceptions {
         public static string USER_PASSWORD_NULL {
             get {
                 return ResourceManager.GetString("USER_PASSWORD_NULL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a User without permission.
+        /// </summary>
+        public static string USER_WITHOUT_PERMISSION {
+            get {
+                return ResourceManager.GetString("USER_WITHOUT_PERMISSION", resourceCulture);
             }
         }
     }

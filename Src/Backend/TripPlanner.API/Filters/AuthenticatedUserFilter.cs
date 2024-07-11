@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using TripPlanner.Communication.Responses;
 using TripPlanner.Domain.Repositories;
 using TripPlanner.Domain.Services.Auth;
+using TripPlanner.Exceptions;
 using TripPlanner.Exceptions.ExceptionsBase;
 
 namespace TripPlanner.API.Filters;
@@ -31,7 +32,7 @@ public class AuthenticatedUserFilter : IAsyncAuthorizationFilter
 
             if(!userExists) 
             {
-                throw new TripPlannerException("User without permition");
+                throw new TripPlannerException(ResourceErrorMessages.USER_WITHOUT_PERMISSION);
             }
         }
         catch(TripPlannerException ex)
@@ -47,7 +48,7 @@ public class AuthenticatedUserFilter : IAsyncAuthorizationFilter
         }
         catch
         {
-            context.Result = new UnauthorizedObjectResult("User without permition");
+            context.Result = new UnauthorizedObjectResult(ResourceErrorMessages.USER_WITHOUT_PERMISSION);
         }
     }
 
@@ -57,7 +58,7 @@ public class AuthenticatedUserFilter : IAsyncAuthorizationFilter
 
         if(string.IsNullOrWhiteSpace(authentication))
         {
-            throw new TripPlannerException("Token is missing");
+            throw new TripPlannerException(ResourceErrorMessages.MISSING_TOKEN);
         }
 
         return authentication["Bearer ".Length..].Trim();

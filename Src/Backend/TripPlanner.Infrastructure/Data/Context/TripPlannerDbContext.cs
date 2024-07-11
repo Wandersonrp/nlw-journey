@@ -13,5 +13,13 @@ public class TripPlannerDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(TripPlannerDbContext).Assembly);
+
+        modelBuilder.Entity<User>(e =>
+        {
+            e.HasMany(e => e.Trips)
+            .WithOne(e => e.User)
+            .HasForeignKey(e => e.UserId)
+            .IsRequired();
+        });
     }
 }
