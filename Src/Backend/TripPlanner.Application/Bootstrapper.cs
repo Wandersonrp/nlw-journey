@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using TripPlanner.Application.Services.Auth.Jwt.Generator;
 using TripPlanner.Application.Services.Auth.Jwt.Validator;
 using TripPlanner.Application.UseCases.Trips.Create;
+using TripPlanner.Application.UseCases.Trips.GetAll;
 using TripPlanner.Application.UseCases.Trips.GetById;
 using TripPlanner.Application.UseCases.Users.Authenticate;
 using TripPlanner.Application.UseCases.Users.GetProfile;
@@ -37,7 +38,8 @@ public static class Bootstrapper
             .AddScoped<IAuthenticateUser, AuthenticateUserUseCase>()
             .AddScoped<IGetUserProfile, GetUserProfileUseCase>()
             .AddScoped<ICreateTrip, CreateTripUseCase>()
-            .AddScoped<IGetTripById, GetTripByIdUseCase>();
+            .AddScoped<IGetTripById, GetTripByIdUseCase>()
+            .AddScoped<IGetAllTrips, GetAllTripsUseCase>();
     }
 
     private static (uint expireInMinutes, string signigkey) GetJwtSettings(IConfiguration configuration)

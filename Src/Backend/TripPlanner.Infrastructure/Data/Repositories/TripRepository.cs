@@ -21,6 +21,16 @@ public class TripRepository : ITripRepository
         await _context.SaveChangesAsync();        
     }
 
+    public async Task<List<Trip>> FindAllAsync(int page, int itemsPerPage)
+    {
+        return await _context.Trips
+            .AsNoTracking()
+            .OrderBy(e => e.StartDate)
+            .Skip((page - 1) * itemsPerPage)
+            .Take(itemsPerPage)
+            .ToListAsync();
+    }
+
     public async Task<Trip?> FindByIdAsync(Guid id)
     {        
         return await _context.Trips.AsNoTracking().FirstOrDefaultAsync(e => e.Id.Equals(id));
