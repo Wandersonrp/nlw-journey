@@ -18,11 +18,11 @@ public class GetTripByIdUseCase : IGetTripById
 
     public async Task<ResponseGetTripJson> Execute(string id)
     {
-        await _loggedUser.User();
+        var user = await _loggedUser.User();
 
         var tripIdParsed = Guid.Parse(id);
 
-        var trip = await _tripRepository.FindByIdAsync(tripIdParsed) ??
+        var trip = await _tripRepository.FindByIdAsync(tripIdParsed, user.Id) ??
             throw new ResourceNotFoundException(id);
 
         return new ResponseGetTripJson

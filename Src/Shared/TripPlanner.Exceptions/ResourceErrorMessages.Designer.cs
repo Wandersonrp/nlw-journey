@@ -61,6 +61,24 @@ namespace TripPlanner.Exceptions {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Activity description can not be null.
+        /// </summary>
+        public static string ACTIVITY_DESCRIPTION_NULL {
+            get {
+                return ResourceManager.GetString("ACTIVITY_DESCRIPTION_NULL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Activity name can not be null.
+        /// </summary>
+        public static string ACTIVITY_NAME_NULL {
+            get {
+                return ResourceManager.GetString("ACTIVITY_NAME_NULL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Destination is required.
         /// </summary>
         public static string DESTINATION_NULL {
@@ -84,6 +102,15 @@ namespace TripPlanner.Exceptions {
         public static string END_DATE_NULL {
             get {
                 return ResourceManager.GetString("END_DATE_NULL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Activity start date can not be greater than trip end date.
+        /// </summary>
+        public static string INVALID_ACTIVITY_START_DATE {
+            get {
+                return ResourceManager.GetString("INVALID_ACTIVITY_START_DATE", resourceCulture);
             }
         }
         

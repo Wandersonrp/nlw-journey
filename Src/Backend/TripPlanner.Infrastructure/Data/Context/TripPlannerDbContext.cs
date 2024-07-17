@@ -9,6 +9,7 @@ public class TripPlannerDbContext : DbContext
 
     public DbSet<User> Users { get; set; }
     public DbSet<Trip> Trips { get; set; }
+    public DbSet<Activity> Activities { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -21,5 +22,13 @@ public class TripPlannerDbContext : DbContext
             .HasForeignKey(e => e.UserId)
             .IsRequired();
         });
+
+        modelBuilder.Entity<Trip>(e =>
+        {
+            e.HasMany(e => e.Activities)
+            .WithOne(e => e.Trip)
+            .HasForeignKey(e => e.TripId)
+            .IsRequired();
+        }); 
     }
 }

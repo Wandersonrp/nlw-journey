@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ACTIVITY_DESCRIPTION_NULL" xml:space="preserve">
+    <value>Activity description can not be null</value>
+  </data>
+  <data name="ACTIVITY_NAME_NULL" xml:space="preserve">
+    <value>Activity name can not be null</value>
+  </data>
   <data name="DESTINATION_NULL" xml:space="preserve">
     <value>Destination is required</value>
   </data>
@@ -125,6 +131,9 @@
   </data>
   <data name="END_DATE_NULL" xml:space="preserve">
     <value>End date is required</value>
+  </data>
+  <data name="INVALID_ACTIVITY_START_DATE" xml:space="preserve">
+    <value>Activity start date can not be greater than trip end date</value>
   </data>
   <data name="MISSING_TOKEN" xml:space="preserve">
     <value>Token is missing</value>

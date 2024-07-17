@@ -31,8 +31,10 @@ public class TripRepository : ITripRepository
             .ToListAsync();
     }
 
-    public async Task<Trip?> FindByIdAsync(Guid id)
+    public async Task<Trip?> FindByIdAsync(Guid id, Guid userId)
     {        
-        return await _context.Trips.AsNoTracking().FirstOrDefaultAsync(e => e.Id.Equals(id));
+        return await _context.Trips
+            .AsNoTracking()
+            .FirstOrDefaultAsync(e => e.Id.Equals(id) && e.UserId.Equals(userId));
     }
 }

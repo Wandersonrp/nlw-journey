@@ -22,7 +22,7 @@ public class CreateTripValidator : AbstractValidator<RequestCreateTripJson>
 
         RuleFor(x => x.StartDate)
             .NotNull()
-            .WithMessage(ResourceErrorMessages.END_DATE_NULL);
+            .WithMessage(ResourceErrorMessages.END_DATE_NULL);        
 
         When(x => x.StartDate != default && x.EndDate != default, () =>
         {
@@ -34,7 +34,5 @@ public class CreateTripValidator : AbstractValidator<RequestCreateTripJson>
                 .GreaterThan(x => x.StartDate)
                 .WithMessage(ResourceErrorMessages.END_DATE_LESS_THAN_START_DATE);
         });
-
-
     }
 }

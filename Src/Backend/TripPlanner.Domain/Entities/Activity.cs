@@ -1,6 +1,7 @@
 ﻿using TripPlanner.Communication.Enums.Activities;
 
 namespace TripPlanner.Domain.Entities;
+
 public class Activity : BaseEntity
 {
     public string Name { get; set; } = string.Empty;

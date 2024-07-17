@@ -32,7 +32,8 @@ public static class Bootstrapper
     {
         services
             .AddScoped<IUserRepository, UserRepository>()
-            .AddScoped<ITripRepository, TripRepository>();
+            .AddScoped<ITripRepository, TripRepository>()
+            .AddScoped<IActivityRepository, ActivityRepository>();
     }
 
     private static void AddLoggedUser(IServiceCollection services)
